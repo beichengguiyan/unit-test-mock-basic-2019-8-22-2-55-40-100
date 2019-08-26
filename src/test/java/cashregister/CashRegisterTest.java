@@ -20,9 +20,8 @@ public class CashRegisterTest {
         //when
     	cashRegister.process(purchase);
     	String printString = mockPrice.getPrintString();
-    	Assertions.assertEquals("test product\t1.0\n",printString);
-    	
         //then
+    	Assertions.assertEquals("test product\t1.0\n",printString);
     }
 
 //    @Test
