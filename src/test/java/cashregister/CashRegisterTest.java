@@ -4,6 +4,7 @@ package cashregister;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
@@ -43,12 +44,21 @@ private static void setup() {
         //then
     	Assertions.assertEquals("test product\t1.0\n",mockPrice.getPrintString());
     }
-//
-//    @Test
-//    public void should_verify_with_process_call_with_mockito() {
-//        //given
-//        //when
-//        //then
-//    }
+
+    @Test
+    public void should_verify_with_process_call_with_mockito() {
+        //given
+    	Printer printer = Mockito.mock(Printer.class);
+    	Purchase purchase = Mockito.mock(Purchase.class);
+    	Mockito.when(purchase.asString()).thenReturn("test product");
+    	
+        //when
+    	
+    	CashRegister cashRegister = new CashRegister(printer);
+    	cashRegister.process(purchase);
+        //then
+    	Mockito.verify(printer).print("test product");
+    	
+    }
 
 }
